@@ -1,5 +1,5 @@
 # elasticsearch-exemplo
-Arquivos e dados de exemplos de uso do ElasticSearch para o post http://blog.caelum.com.br/?p=9020&preview=true.
+Arquivos e dados de exemplos de uso do ElasticSearch para o post http://blog.caelum.com.br/elasticsearch-criando-consultas-em-bigdata.
 
 # Configuracoes Iniciais
 
