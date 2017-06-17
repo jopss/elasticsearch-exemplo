@@ -1,6 +1,8 @@
 # elasticsearch-exemplo
 Arquivos e dados de exemplos de uso do ElasticSearch para o post http://blog.caelum.com.br/elasticsearch-criando-consultas-em-bigdata.
 
+São quase 1.5mi de dados para testes.
+
 # Configuracoes Iniciais
 
 + É necessário ter o Java instalado na sua máquina.
@@ -10,7 +12,7 @@ Arquivos e dados de exemplos de uso do ElasticSearch para o post http://blog.cae
 
 # Banco
 
-+ No arquivo zipado há um arquivo SQL contendo os dados a serem importados no PostgreSQL. Use o pgAdmin para isso.
++ No arquivo zipado há um arquivo SQL contendo os dados a serem importados no PostgreSQL. Basta executar no pgAdmin.
 + Para importar no Elasticsearch, será necessário o uso do LogStash.
 
 # Importando no Elasticsearch
@@ -21,39 +23,8 @@ Baixe o LogStash
 + Baixar o LogStash ```curl -L -O https://artifacts.elastic.co/downloads/logstash/logstash-5.4.1.tar.gz```
 + Descompactar ```tar -zxvf logstash-5.4.1.tar.gz```
 
-Crie um arquivo de importação e configure a importação do CSV para o seu Node.
+Veja o arquivo aqui versionado chamado importacao.conf. Ele contem o caminho do arquivo de importação e os dados do seu Node. Altere o que achar necessário. Entre na pasta bin e suba o LogStash apontando para esse arquivo de configuração.
 
-```
-input {
-    file {
-        path => ["/[seu-path]/backup_pessoas.csv"]
-        start_position => "beginning"
-    }
-}
-
-filter {
-    csv {
-        columns => ["id", "datacriacao", "nome", "tipopessoa"]
-        separator => ","
-    }
-}
-
-output {
-    stdout { codec => rubydebug }
-    elasticsearch {
-        action => "index"
-        hosts => ["127.0.0.1:9200"]
-        index => "pessoas_idx"
-        document_type => "pessoas_type"
-        workers => 1
-    }
-}
-```
-
-Entre na pasta bim e suba o LogStash 
 ```./logstash -f [seu-path]/importacao.conf```
 
-Aguarde bastante, são quase 1.5mi registros :)
-
-
-
+Aguarde bastante :)
