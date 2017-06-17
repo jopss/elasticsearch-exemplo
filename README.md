@@ -34,7 +34,7 @@ Aguarde bastante :)
 No navegador, acesse aos URLs abaixo.
 
 + Verificar se o nó foi criado: ```http://127.0.0.1:9200/_cat/indices?v```
-+ Buscar todas as pessoas ordenadas: ```http://127.0.0.1:9200/pessoas_idx/_search?pretty -d '{"query": { "match_all": {} }, "sort": [{ "nome": "asc", "tipopessoa": "asc" }] }'```
++ Buscar todas as pessoas: ```http://127.0.0.1:9200/pessoas_idx/_search?pretty -d '{"query": {"match_all": {}}'```
 
 
 
